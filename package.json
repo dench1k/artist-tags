@@ -1,0 +1,19 @@
+{
+  "name": "artist-tags",
+  "version": "1.0.0",
+  "description": "A tool to generate artist tags from a list of songs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dench1k/artist-tags.git"
+  },
+  "author": "Den Moskvitin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dench1k/artist-tags/issues"
+  },
+  "homepage": "https://github.com/dench1k/artist-tags#readme"
+}
