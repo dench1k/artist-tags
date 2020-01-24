@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <title>Artist Tags</title>
+  </head>
+  <body>
+    <h1>A tool to generate artist tags from a list of songs</h1>
+    <h2>Paste your tracklist (ex.: 01-...02-...)</h2>
+    <form class="form" action="">
+      <div class="form__row">
+        <textarea
+          name="tracklist_input"
+          class="form__textarea js-tracklist-input"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+      <div class="form__row">
+        <button class="form__button js-tracklist-submit" type="button">
+          Process data!
+        </button>
+      </div>
+    </form>
+    <script src="assets/scripts/app.js"></script>
+  </body>
+</html>
