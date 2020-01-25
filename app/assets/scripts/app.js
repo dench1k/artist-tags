@@ -7,14 +7,27 @@ const app = () => {
   //functions
   const submitTracklist = () => {
     const tracklistInputValue = tracklistInput.value;
-    const tracklistInputArray = tracklistInputValue.split("-");
+    const tracklistInputArray = tracklistInputValue.split("\n");
 
+    const removeNumbersArray = arr => {
+      return arr.map(item => {
+        return item.split(/\d\d-/);
+      });
+    };
+    const removeSpacesArray = arr => {
+      return arr.flatMap(item => {
+        return item[1];
+      });
+    };
     const getUniqueArray = arr => {
-      return [...new Set(arr.sort((a, b) => a - b))];
+      return [...new Set(arr)];
     };
 
+    const splittedByNumbersArray = removeNumbersArray(tracklistInputArray);
+    const flattedBySpacesArray = removeSpacesArray(splittedByNumbersArray);
     const tracklistInputArrayUnique = getUniqueArray(tracklistInputArray);
-    console.log(tracklistInputArrayUnique);
+
+    console.log(egz);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
