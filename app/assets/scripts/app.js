@@ -14,20 +14,30 @@ const app = () => {
         return item.split(/\d\d-/);
       });
     };
-    const removeSpacesArray = arr => {
-      return arr.flatMap(item => {
-        return item[1];
+
+    const removeDashesArray = arr => {
+      return arr.map(item => {
+        return item.split(" - ");
       });
     };
+
+    const getFlatArrayByIndex = (arr, index = 0) => {
+      return arr.flatMap(item => {
+        return item[index];
+      });
+    };
+
     const getUniqueArray = arr => {
       return [...new Set(arr)];
     };
 
     const splittedByNumbersArray = removeNumbersArray(tracklistInputArray);
-    const flattedBySpacesArray = removeSpacesArray(splittedByNumbersArray);
+    const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
+    const splittedByDashesArray = removeDashesArray(flattedBySpacesArray);
+    const flattedByArtistArray = getFlatArrayByIndex(splittedByDashesArray);
     const tracklistInputArrayUnique = getUniqueArray(tracklistInputArray);
 
-    console.log(egz);
+    console.log(flattedByArtistArray);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
