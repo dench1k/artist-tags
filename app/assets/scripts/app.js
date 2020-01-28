@@ -21,6 +21,19 @@ const app = () => {
       });
     };
 
+    const getParenthesisArray = arr => {
+      return arr.map(item => {
+        const regExp = /\(([^)]+)\)/g;
+        return item.split(regExp);
+      });
+    };
+
+    const filterParenthesisArray = arr => {
+      return arr.filter(item => {
+        return item[1];
+      });
+    };
+
     const getFlatArrayByIndex = (arr, index = 0) => {
       return arr.flatMap(item => {
         return item[index];
@@ -35,9 +48,13 @@ const app = () => {
     const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
     const splittedByDashesArray = removeDashesArray(flattedBySpacesArray);
     const flattedByArtistArray = getFlatArrayByIndex(splittedByDashesArray);
+    const flattedBySongArray = getFlatArrayByIndex(splittedByDashesArray, 1);
+    const splittedByAdditionalInfoArray = getParenthesisArray(flattedBySongArray);
+    const filteredByParenthesisArray = filterParenthesisArray(splittedByAdditionalInfoArray);
+    const flattedByParenthesisArray = getFlatArrayByIndex(filteredByParenthesisArray, 1);
     const tracklistInputArrayUnique = getUniqueArray(tracklistInputArray);
 
-    console.log(flattedByArtistArray);
+    console.log(flattedByParenthesisArray);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
