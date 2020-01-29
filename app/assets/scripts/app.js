@@ -6,7 +6,7 @@ const app = () => {
 
   //functions
   const submitTracklist = () => {
-    const tracklistInputValue = tracklistInput.value;
+    const tracklistInputValue = tracklistInput.value.trim();
     const tracklistInputArray = tracklistInputValue.split("\n");
 
     const removeNumbersArray = arr => {
@@ -18,6 +18,12 @@ const app = () => {
     const removeDashesArray = arr => {
       return arr.map(item => {
         return item.split(" - ");
+      });
+    };
+
+    const removeSpacesArray = arr => {
+      return arr.map(item => {
+        return item.split(" ").join("").toLowerCase();
       });
     };
 
@@ -48,12 +54,15 @@ const app = () => {
     const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
     const splittedByDashesArray = removeDashesArray(flattedBySpacesArray);
     const flattedByArtistArray = getFlatArrayByIndex(splittedByDashesArray);
+    const combinedByArtistArray = removeSpacesArray(flattedByArtistArray);
+
     const flattedBySongArray = getFlatArrayByIndex(splittedByDashesArray, 1);
     const splittedByAdditionalInfoArray = getParenthesisArray(flattedBySongArray);
     const filteredByParenthesisArray = filterParenthesisArray(splittedByAdditionalInfoArray);
     const flattedByParenthesisArray = getFlatArrayByIndex(filteredByParenthesisArray, 1);
     const tracklistInputArrayUnique = getUniqueArray(tracklistInputArray);
 
+    console.log(combinedByArtistArray);
     console.log(flattedByParenthesisArray);
   };
 
