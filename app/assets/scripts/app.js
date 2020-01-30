@@ -21,6 +21,12 @@ const app = () => {
       });
     };
 
+    const removeAmpersandArray = arr => {
+      return arr.map(item => {
+        return item.split(" & ");
+      });
+    };
+
     const removeSpacesArray = arr => {
       return arr.map(item => {
         return item.split(" ").join("").toLowerCase();
@@ -40,6 +46,12 @@ const app = () => {
       });
     };
 
+    const getFlatArray = (arr) => {
+      return arr.flatMap(item => {
+        return item;
+      });
+    };
+
     const getFlatArrayByIndex = (arr, index = 0) => {
       return arr.flatMap(item => {
         return item[index];
@@ -54,7 +66,9 @@ const app = () => {
     const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
     const splittedByDashesArray = removeDashesArray(flattedBySpacesArray);
     const flattedByArtistArray = getFlatArrayByIndex(splittedByDashesArray);
-    const combinedByArtistArray = removeSpacesArray(flattedByArtistArray);
+    const splittedByAmpersandArray = removeAmpersandArray(flattedByArtistArray);
+    const flattedByAmpersandArray = getFlatArray(splittedByAmpersandArray);
+    const combinedByArtistArray = removeSpacesArray(flattedByAmpersandArray);
 
     const flattedBySongArray = getFlatArrayByIndex(splittedByDashesArray, 1);
     const splittedByAdditionalInfoArray = getParenthesisArray(flattedBySongArray);
