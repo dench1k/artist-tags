@@ -1,4 +1,23 @@
 const app = () => {
+  // data
+  const DEFAULT_TAGS = [
+    "liquidxd",
+    "liquidxd003",
+    "liquid",
+    "liquiddnb",
+    "dnb",
+    "xd",
+    "xd003",
+    "drumandbass",
+    "drum&bass",
+    "liquiddrumandbass",
+    "liquiddrum&bass",
+    "music",
+    "dench1k",
+    "denchke"
+  ];
+  const BAN_WORDLIST = ["mix", "original", "remix", "edit", "&"];
+
   // cached DOM
   const tracklistInput = document.querySelector(".js-tracklist-input");
   const tracklistOutput = document.querySelector(".js-tracklist-output");
@@ -93,10 +112,15 @@ const app = () => {
     const splittedBySubAddInfo = getFlatArray(
       splitBySpaceArray(flattedByParenthesisArray)
     );
-    const tracklistInputArrayUnique = getUniqueArray(tracklistInputArray);
 
     console.log(combinedByArtistArray);
     console.log(splittedBySubAddInfo);
+    const processedArray = getUniqueArray([
+      ...DEFAULT_TAGS,
+      ...combinedByArtistArray,
+      ...splittedBySubAddInfo
+    ]);
+    console.log(processedArray);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
