@@ -27,9 +27,18 @@ const app = () => {
       });
     };
 
+    const splitBySpaceArray = arr => {
+      return arr.map(item => {
+        return item.split(" ");
+      });
+    };
+
     const removeSpacesArray = arr => {
       return arr.map(item => {
-        return item.split(" ").join("").toLowerCase();
+        return item
+          .split(" ")
+          .join("")
+          .toLowerCase();
       });
     };
 
@@ -46,7 +55,7 @@ const app = () => {
       });
     };
 
-    const getFlatArray = (arr) => {
+    const getFlatArray = arr => {
       return arr.flatMap(item => {
         return item;
       });
@@ -71,13 +80,23 @@ const app = () => {
     const combinedByArtistArray = removeSpacesArray(flattedByAmpersandArray);
 
     const flattedBySongArray = getFlatArrayByIndex(splittedByDashesArray, 1);
-    const splittedByAdditionalInfoArray = getParenthesisArray(flattedBySongArray);
-    const filteredByParenthesisArray = filterParenthesisArray(splittedByAdditionalInfoArray);
-    const flattedByParenthesisArray = getFlatArrayByIndex(filteredByParenthesisArray, 1);
+    const splittedByAdditionalInfoArray = getParenthesisArray(
+      flattedBySongArray
+    );
+    const filteredByParenthesisArray = filterParenthesisArray(
+      splittedByAdditionalInfoArray
+    );
+    const flattedByParenthesisArray = getFlatArrayByIndex(
+      filteredByParenthesisArray,
+      1
+    );
+    const splittedBySubAddInfo = getFlatArray(
+      splitBySpaceArray(flattedByParenthesisArray)
+    );
     const tracklistInputArrayUnique = getUniqueArray(tracklistInputArray);
 
     console.log(combinedByArtistArray);
-    console.log(flattedByParenthesisArray);
+    console.log(splittedBySubAddInfo);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
