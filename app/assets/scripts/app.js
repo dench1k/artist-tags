@@ -74,6 +74,15 @@ const app = () => {
       });
     };
 
+    // TODO: wrong filter
+    const filterByWordlist = (arr, wordlist) => {
+      return arr.map(item => {
+        return wordlist.filter(word => {
+          return word !== item;
+        });
+      });
+    };
+
     const getFlatArray = arr => {
       return arr.flatMap(item => {
         return item;
@@ -120,7 +129,13 @@ const app = () => {
       ...combinedByArtistArray,
       ...splittedBySubAddInfo
     ]);
-    console.log(processedArray);
+
+    const filteredProcessedArray = filterByWordlist(
+      processedArray,
+      BAN_WORDLIST
+    );
+
+    console.log(filteredProcessedArray);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
