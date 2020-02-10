@@ -16,7 +16,7 @@ const app = () => {
     "dench1k",
     "denchke"
   ];
-  const BAN_WORDLIST = ["mix", "original", "remix", "edit", "&"];
+  const BAN_WORDLIST = ["mix", "original", "remix", "edit", "&", "vip"];
 
   // cached DOM
   const tracklistInput = document.querySelector(".js-tracklist-input");
@@ -132,7 +132,10 @@ const app = () => {
       BAN_WORDLIST
     );
 
-    console.log(filteredProcessedArray);
+    const formattedArray = filteredProcessedArray.join(', ');
+
+    tracklistOutput.value = formattedArray;
+    console.log(formattedArray);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
