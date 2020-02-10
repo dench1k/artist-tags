@@ -2,12 +2,12 @@ const app = () => {
   // data
   const DEFAULT_TAGS = [
     "liquidxd",
-    "liquidxd003",
+    "liquidxd004",
     "liquid",
     "liquiddnb",
     "dnb",
     "xd",
-    "xd003",
+    "xd004",
     "drumandbass",
     "drum&bass",
     "liquiddrumandbass",
@@ -48,7 +48,7 @@ const app = () => {
 
     const splitBySpaceArray = arr => {
       return arr.map(item => {
-        return item.split(" ");
+        return item.toLowerCase().split(" ");
       });
     };
 
@@ -74,12 +74,9 @@ const app = () => {
       });
     };
 
-    // TODO: wrong filter
     const filterByWordlist = (arr, wordlist) => {
-      return arr.map(item => {
-        return wordlist.filter(word => {
-          return word !== item;
-        });
+      return arr.filter(item => {
+        return !wordlist.includes(item);
       });
     };
 
