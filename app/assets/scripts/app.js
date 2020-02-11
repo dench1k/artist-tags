@@ -24,82 +24,82 @@ const app = () => {
   const tracklistSubmit = document.querySelector(".js-tracklist-submit");
 
   //functions
+  const removeNumbersArray = arr => {
+    return arr.map(item => {
+      return item.split(/\d\d-/);
+    });
+  };
+
+  const removeDashesArray = arr => {
+    return arr.map(item => {
+      return item.split(" - ");
+    });
+  };
+
+  const removeAmpersandArray = arr => {
+    return arr.map(item => {
+      return item.split(" & ");
+    });
+  };
+
+  const splitBySpaceArray = arr => {
+    return arr.map(item => {
+      return item.toLowerCase().split(" ");
+    });
+  };
+
+  const removeSpacesArray = arr => {
+    return arr.map(item => {
+      return item
+        .split(" ")
+        .join("")
+        .toLowerCase();
+    });
+  };
+
+  const getParenthesisArray = arr => {
+    return arr.map(item => {
+      const regExp = /\(([^)]+)\)/g;
+      return item.split(regExp);
+    });
+  };
+
+  const filterParenthesisArray = arr => {
+    return arr.filter(item => {
+      return item[1];
+    });
+  };
+
+  const filterByWordlist = (arr, wordlist) => {
+    return arr.filter(item => {
+      return !wordlist.includes(item);
+    });
+  };
+
+  const getFlatArray = arr => {
+    return arr.flatMap(item => {
+      return item;
+    });
+  };
+
+  const getFlatArrayByIndex = (arr, index = 0) => {
+    return arr.flatMap(item => {
+      return item[index];
+    });
+  };
+
+  const getUniqueArray = arr => {
+    return [...new Set(arr)];
+  };
+
+  function copyToClipboard(el) {
+    el.select();
+    document.execCommand("copy");
+  }
+
   const submitTracklist = () => {
     const tracklistInputValue = tracklistInput.value.trim();
     const tracklistInputArray = tracklistInputValue.split("\n");
-
-    const removeNumbersArray = arr => {
-      return arr.map(item => {
-        return item.split(/\d\d-/);
-      });
-    };
-
-    const removeDashesArray = arr => {
-      return arr.map(item => {
-        return item.split(" - ");
-      });
-    };
-
-    const removeAmpersandArray = arr => {
-      return arr.map(item => {
-        return item.split(" & ");
-      });
-    };
-
-    const splitBySpaceArray = arr => {
-      return arr.map(item => {
-        return item.toLowerCase().split(" ");
-      });
-    };
-
-    const removeSpacesArray = arr => {
-      return arr.map(item => {
-        return item
-          .split(" ")
-          .join("")
-          .toLowerCase();
-      });
-    };
-
-    const getParenthesisArray = arr => {
-      return arr.map(item => {
-        const regExp = /\(([^)]+)\)/g;
-        return item.split(regExp);
-      });
-    };
-
-    const filterParenthesisArray = arr => {
-      return arr.filter(item => {
-        return item[1];
-      });
-    };
-
-    const filterByWordlist = (arr, wordlist) => {
-      return arr.filter(item => {
-        return !wordlist.includes(item);
-      });
-    };
-
-    const getFlatArray = arr => {
-      return arr.flatMap(item => {
-        return item;
-      });
-    };
-
-    const getFlatArrayByIndex = (arr, index = 0) => {
-      return arr.flatMap(item => {
-        return item[index];
-      });
-    };
-
-    const getUniqueArray = arr => {
-      return [...new Set(arr)];
-    };
-
-    function copyToClipboard(el) {
-      el.select();
-      document.execCommand("copy");
-    }
 
     const splittedByNumbersArray = removeNumbersArray(tracklistInputArray);
     const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
