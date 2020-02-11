@@ -96,6 +96,11 @@ const app = () => {
       return [...new Set(arr)];
     };
 
+    function copyToClipboard(el) {
+      el.select();
+      document.execCommand("copy");
+    }
+
     const splittedByNumbersArray = removeNumbersArray(tracklistInputArray);
     const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
     const splittedByDashesArray = removeDashesArray(flattedBySpacesArray);
@@ -135,6 +140,8 @@ const app = () => {
     const formattedArray = filteredProcessedArray.join(', ');
 
     tracklistOutput.value = formattedArray;
+    copyToClipboard(tracklistOutput);
+
     console.log(formattedArray);
   };
 
