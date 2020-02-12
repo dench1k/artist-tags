@@ -12,6 +12,8 @@ const app = () => {
     "drum&bass",
     "liquiddrumandbass",
     "liquiddrum&bass",
+    "vocaldrumandbass",
+    "vocaldrumandbass2020",
     "music",
     "dench1k",
     "denchke"
@@ -22,6 +24,7 @@ const app = () => {
   const tracklistInput = document.querySelector(".js-tracklist-input");
   const tracklistOutput = document.querySelector(".js-tracklist-output");
   const tracklistSubmit = document.querySelector(".js-tracklist-submit");
+  const tagsLengthOutput = document.querySelector(".js-tags-length");
 
   //functions
   const removeNumbersArray = arr => {
@@ -137,12 +140,12 @@ const app = () => {
       BAN_WORDLIST
     );
 
-    const formattedArray = filteredProcessedArray.join(', ');
-
-    tracklistOutput.value = formattedArray;
+    const finalTagString = filteredProcessedArray.join(", ");
+    tracklistOutput.value = finalTagString;
+    tagsLengthOutput.innerHTML = filteredProcessedArray.length;
     copyToClipboard(tracklistOutput);
 
-    console.log(formattedArray);
+    console.log(finalTagString);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
