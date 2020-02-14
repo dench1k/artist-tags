@@ -18,7 +18,19 @@ const app = () => {
     "dench1k",
     "denchke"
   ];
-  const BAN_WORDLIST = ["mix", "original", "remix", "edit", "&", "vip"];
+  const BAN_WORDLIST = [
+    "mix",
+    "original",
+    "remix",
+    "edit",
+    "&",
+    "vip",
+    "feat",
+    "feat.",
+    "ft",
+    "ft.",
+    "bootleg"
+  ];
 
   // cached DOM
   const tracklistInput = document.querySelector(".js-tracklist-input");
