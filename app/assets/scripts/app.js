@@ -1,4 +1,6 @@
-const app = () => {
+"use strict";
+
+const app = (() => {
   // data
   const DEFAULT_TAGS = [
     "liquidxd",
@@ -31,12 +33,6 @@ const app = () => {
     "ft.",
     "bootleg"
   ];
-
-  // cached DOM
-  const tracklistInput = document.querySelector(".js-tracklist-input");
-  const tracklistOutput = document.querySelector(".js-tracklist-output");
-  const tracklistSubmit = document.querySelector(".js-tracklist-submit");
-  const tagsLengthOutput = document.querySelector(".js-tags-length");
 
   //functions
   const removeNumbersArray = arr => {
@@ -107,22 +103,6 @@ const app = () => {
     return [...new Set(arr)];
   };
 
-  const copyToClipboard = el => {
-    el.select();
-    document.execCommand("copy");
-  };
-
-  const getTagsLength = str => {
-    return str.split(",").length;
-  };
-
-  const onChangeOutput = () => {
-    const tags = tracklistOutput.value;
-    if (tags.length > 1) {
-      tagsLengthOutput.innerHTML = getTagsLength(tags);
-    }
-  };
-
   /**
    * Process input data and return a formatted string as output
    * @param {string} inputData - A string with input data
@@ -173,18 +153,53 @@ const app = () => {
     return outputData;
   };
 
-  const submitTracklist = () => {
-    // Get tags string
-    const tags = processData(tracklistInput.value);
-    // Paste to the output textarea
-    tracklistOutput.value = tags;
-    // Show tags length
-    tagsLengthOutput.innerHTML = getTagsLength(tags);
-    // Copy it the the clipboard
-    copyToClipboard(tracklistOutput);
+  const clientInit = () => {
+    // cached DOM
+    const tracklistInput = document.querySelector(".js-tracklist-input");
+    const tracklistOutput = document.querySelector(".js-tracklist-output");
+    const tracklistSubmit = document.querySelector(".js-tracklist-submit");
+    const tagsLengthOutput = document.querySelector(".js-tags-length");
+
+    // functions
+    const copyToClipboard = el => {
+      el.select();
+      document.execCommand("copy");
+    };
+
+    const getTagsLength = str => {
+      return str.split(",").length;
+    };
+
+    const onChangeOutput = () => {
+      const tags = tracklistOutput.value;
+      if (tags.length > 1) {
+        tagsLengthOutput.innerHTML = getTagsLength(tags);
+      }
+    };
+
+    const submitTracklist = () => {
+      // Get tags string
+      const tags = processData(tracklistInput.value);
+      // Paste to the output textarea
+      tracklistOutput.value = tags;
+      // Show tags length
+      tagsLengthOutput.innerHTML = getTagsLength(tags);
+      // Copy it the the clipboard
+      copyToClipboard(tracklistOutput);
+    };
+
+    // events
+    tracklistSubmit.addEventListener("click", submitTracklist, false);
+    tracklistOutput.addEventListener("input", onChangeOutput, false);
   };
 
-  tracklistSubmit.addEventListener("click", submitTracklist, false);
-  tracklistOutput.addEventListener("input", onChangeOutput, false);
-};
-app();
+  const init = () => {
+    clientInit();
+  };
+
+  return {
+    init
+  };
+})();
+
+app.init();
