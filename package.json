@@ -2,9 +2,8 @@
   "name": "artist-tags",
   "version": "1.0.0",
   "description": "A tool to generate artist tags from a list of songs",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server -c-1 -o /app"
   },
   "repository": {
     "type": "git",
@@ -15,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/dench1k/artist-tags/issues"
   },
-  "homepage": "https://github.com/dench1k/artist-tags#readme"
+  "homepage": "https://github.com/dench1k/artist-tags#readme",
+  "devDependencies": {
+    "http-server": "^0.12.1"
+  }
 }
