@@ -107,10 +107,21 @@ const app = () => {
     return [...new Set(arr)];
   };
 
-  function copyToClipboard(el) {
+  const copyToClipboard = el => {
     el.select();
     document.execCommand("copy");
-  }
+  };
+
+  const getTagsLength = str => {
+    return str.split(",").length;
+  };
+
+  const onChangeOutput = () => {
+    const tags = tracklistOutput.value;
+    if (tags.length > 1) {
+      tagsLengthOutput.innerHTML = getTagsLength(tags);
+    }
+  };
 
   /**
    * Process input data and return a formatted string as output
@@ -154,8 +165,6 @@ const app = () => {
       processedArray,
       BAN_WORDLIST
     );
-    // TODO: get rid of this (getLength ())
-    tagsLengthOutput.innerHTML = filteredProcessedArray.length;
 
     const outputData = filteredProcessedArray.join(", ");
 
@@ -169,10 +178,13 @@ const app = () => {
     const tags = processData(tracklistInput.value);
     // Paste to the output textarea
     tracklistOutput.value = tags;
+    // Show tags length
+    tagsLengthOutput.innerHTML = getTagsLength(tags);
     // Copy it the the clipboard
     copyToClipboard(tracklistOutput);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
+  tracklistOutput.addEventListener("input", onChangeOutput, false);
 };
 app();
