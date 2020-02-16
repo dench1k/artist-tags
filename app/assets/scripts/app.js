@@ -112,10 +112,13 @@ const app = () => {
     document.execCommand("copy");
   }
 
-  const submitTracklist = () => {
-    const tracklistInputValue = tracklistInput.value.trim();
-    const tracklistInputArray = tracklistInputValue.split("\n");
-
+  /**
+   * Process input data and return a formatted string as output
+   * @param {string} inputData - A string with input data
+   * @return {string}
+   */
+  const processData = inputData => {
+    const tracklistInputArray = inputData.trim().split("\n");
     const splittedByNumbersArray = removeNumbersArray(tracklistInputArray);
     const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
     const splittedByDashesArray = removeDashesArray(flattedBySpacesArray);
@@ -151,13 +154,23 @@ const app = () => {
       processedArray,
       BAN_WORDLIST
     );
-
-    const finalTagString = filteredProcessedArray.join(", ");
-    tracklistOutput.value = finalTagString;
+    // TODO: get rid of this (getLength ())
     tagsLengthOutput.innerHTML = filteredProcessedArray.length;
-    copyToClipboard(tracklistOutput);
 
-    console.log(finalTagString);
+    const outputData = filteredProcessedArray.join(", ");
+
+    console.log(outputData);
+
+    return outputData;
+  };
+
+  const submitTracklist = () => {
+    // Get tags string
+    const tags = processData(tracklistInput.value);
+    // Paste to the output textarea
+    tracklistOutput.value = tags;
+    // Copy it the the clipboard
+    copyToClipboard(tracklistOutput);
   };
 
   tracklistSubmit.addEventListener("click", submitTracklist, false);
