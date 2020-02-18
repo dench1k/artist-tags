@@ -33,6 +33,7 @@ const app = (() => {
     "ft.",
     "bootleg"
   ];
+  const MAX_TAGS_NUM = 50;
 
   //functions
   const removeNumbersArray = arr => {
@@ -159,6 +160,11 @@ const app = (() => {
     const tracklistOutput = document.querySelector(".js-tracklist-output");
     const tracklistSubmit = document.querySelector(".js-tracklist-submit");
     const tagsLengthOutput = document.querySelector(".js-tags-length");
+    const validationBox = document.querySelector(".js-validation");
+    const validationBoxSuccess = document.querySelector(
+      ".js-validation-success"
+    );
+    const validationBoxError = document.querySelector(".js-validation-error");
 
     // functions
     const copyToClipboard = el => {
@@ -170,9 +176,24 @@ const app = (() => {
       return str.split(",").length;
     };
 
+    const validate = () => {
+      const tags = tracklistOutput.value;
+      const tagsNum = getTagsLength(tags);
+      tagsLengthOutput.innerHTML = tagsNum;
+      validationBox.classList.remove("is-hidden");
+      validationBoxSuccess.classList.remove("is-hidden");
+      validationBoxError.classList.remove("is-hidden");
+      if (tagsNum <= MAX_TAGS_NUM) {
+        validationBoxError.classList.add("is-hidden");
+      } else {
+        validationBoxSuccess.classList.add("is-hidden");
+      }
+    };
+
     const onChangeOutput = () => {
       const tags = tracklistOutput.value;
       if (tags.length > 1) {
+        validate();
         tagsLengthOutput.innerHTML = getTagsLength(tags);
       }
     };
@@ -182,8 +203,8 @@ const app = (() => {
       const tags = processData(tracklistInput.value);
       // Paste to the output textarea
       tracklistOutput.value = tags;
-      // Show tags length
-      tagsLengthOutput.innerHTML = getTagsLength(tags);
+      // Validate
+      validate();
       // Copy it the the clipboard
       copyToClipboard(tracklistOutput);
     };

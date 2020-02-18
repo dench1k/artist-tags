@@ -4,59 +4,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
     <link rel="stylesheet" href="assets/styles/styles.css" />
     <title>Artist Tags</title>
   </head>
   <body>
-    <h1>A tool to generate artist tags from a list of songs</h1>
-    <h2>Paste your tracklist (ex.: 01-...02-...)</h2>
-    <form class="form" action="">
-      <div class="form__row">
-        <textarea
-          name="tracklist_input"
-          class="form__textarea js-tracklist-input"
-          cols="30"
-          rows="10"
-        >
-        01-Arch Origin - Mesmerize												
-        02-Nelver - Consciousness												
-        03-Netsky - Daydreaming													
-        04-Henry - Bittersweet													
-        05-Staytment - Lost My Way												
-        06-Qbig - Sleepless														
-        07-Sublab & Azaleh - Continuum											
-        08-Pola & Bryson - The Music											
-        09-Artificial Intelligence - Intimacy									
-        10-Flite - Awakening													
-        11-DJ Fresh vs. Diplo - Bang Bang (Rene LaVice's Trigger Happy Remix)	
-        12-S.P.Y - Rock Da House
-        13-Prolix - Beat Down (feat. DC Breaks)								
-        14-Loadstar - I Need The Night
-        15-Post Malone - Psycho (Oakwite Bootleg)							
-        16-Silence Groove - On The Way										
-        17-Anile - Vitalogy													
-        18-Stanton Warriors - Still Here (ft. Eska) (Fred V & Grafix Remix)
-        19-T & Sugah - Cast Away	
-        20-SynthForce & DJ Ransome - Knocked Down
-        21-Nu:Logic - Red Velvet
-        22-Smote - My World (Edlan VIP Remix)</textarea
-        >
+    <div class="wrapper">
+      <div class="ui vertical stripe segment">
+        <div class="ui text container">
+          <div class="ui warning message">
+            <div class="header">xd number</div>
+            <ul class="list">
+              <li>Don't forget to check the podcast number!</li>
+            </ul>
+          </div>
+          <h1 class="ui header">
+            A tool to generate artist tags from a list of songs
+          </h1>
+          <h2>Paste your tracklist (ex.: 01-...02-...)</h2>
+          <div class="ui form">
+            <div class="field">
+              <label>Tracklist</label>
+              <textarea
+                name="tracklist_input"
+                class="form__textarea js-tracklist-input"
+                cols="30"
+                rows="10"
+              >
+              01-Arch Origin - Mesmerize												
+              02-Nelver - Consciousness												
+              03-Netsky - Daydreaming													
+              04-Henry - Bittersweet													
+              05-Staytment - Lost My Way												
+              06-Qbig - Sleepless														
+              07-Sublab & Azaleh - Continuum											
+              08-Pola & Bryson - The Music											
+              09-Artificial Intelligence - Intimacy									
+              10-Flite - Awakening													
+              11-DJ Fresh vs. Diplo - Bang Bang (Rene LaVice's Trigger Happy Remix)	
+              12-S.P.Y - Rock Da House
+              13-Prolix - Beat Down (feat. DC Breaks)								
+              14-Loadstar - I Need The Night
+              15-Post Malone - Psycho (Oakwite Bootleg)							
+              16-Silence Groove - On The Way										
+              17-Anile - Vitalogy													
+              18-Stanton Warriors - Still Here (ft. Eska) (Fred V & Grafix Remix)
+              19-T & Sugah - Cast Away	
+              20-SynthForce & DJ Ransome - Knocked Down
+              21-Nu:Logic - Red Velvet
+              22-Smote - My World (Edlan VIP Remix)</textarea
+              >
+            </div>
+            <div class="field">
+              <button class="ui button js-tracklist-submit" type="button">
+                Process data!
+              </button>
+            </div>
+            <div class="field">
+              <label>Tags</label>
+              <textarea
+                name="tracklist_output"
+                class="form__textarea js-tracklist-output"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="validation js-validation is-hidden">
+            <h2>Tags length: <span class="js-tags-length"></span></h2>
+            <div class="ui success js-validation-success message">
+              <div class="header">=)</div>
+              <p>The allowed number of tags (50) is not exceeded.</p>
+            </div>
+            <div class="ui error js-validation-error message">
+              <div class="header">=(</div>
+              <p>Too much tags, mate. Try to delete something.</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form__row">
-        <button class="form__button js-tracklist-submit" type="button">
-          Process data!
-        </button>
-      </div>
-      <div class="form__row">
-        <textarea
-          name="tracklist_output"
-          class="form__textarea js-tracklist-output"
-          cols="30"
-          rows="10"
-        ></textarea>
-        <h2>Tags length: <span class="js-tags-length"></span></h2>
-      </div>
-    </form>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
     <script src="assets/scripts/app.js"></script>
+    <script>
+      $(".ui.checkbox").checkbox();
+    </script>
   </body>
 </html>
