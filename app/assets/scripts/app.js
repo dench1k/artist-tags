@@ -105,6 +105,12 @@ const app = (() => {
   };
 
   /**
+   * Use localStorage to save data
+   * @param {*} obj
+   */
+  const saveData = obj => {};
+
+  /**
    * Process input data and return a formatted string as output
    * @param {string} inputData - A string with input data
    * @return {string}
@@ -134,8 +140,6 @@ const app = (() => {
       splitBySpaceArray(flattedByParenthesisArray)
     );
 
-    console.log(combinedByArtistArray);
-    console.log(splittedBySubAddInfo);
     const processedArray = getUniqueArray([
       ...DEFAULT_TAGS,
       ...combinedByArtistArray,
