@@ -106,14 +106,6 @@ const app = (() => {
   };
 
   /**
-   * Use localStorage to save data
-   * @param {*} number
-   */
-  const saveData = number => {
-    localStorage.setItem("xdNumber", number);
-  };
-
-  /**
    * Process input data and return a formatted string as output
    * @param {string} inputData - A string with input data
    * @return {string}
@@ -142,7 +134,7 @@ const app = (() => {
     const splittedBySubAddInfo = getFlatArray(
       splitBySpaceArray(flattedByParenthesisArray)
     );
-
+    console.log(DEFAULT_TAGS);
     const processedArray = getUniqueArray([
       ...DEFAULT_TAGS,
       ...combinedByArtistArray,
@@ -172,8 +164,26 @@ const app = (() => {
       ".js-validation-success"
     );
     const validationBoxError = document.querySelector(".js-validation-error");
-
+    const numberForm = document.querySelector(".js-number-form");
+    const numberInput = document.querySelector(".js-number-input");
     // functions
+    /**
+     * Use localStorage to save data
+     * @param {*} number
+     */
+    const saveData = number => {
+      localStorage.setItem("xdNumber", number);
+      console.log(`xdNumber ${number} is saved`);
+    };
+
+    /**
+     * Use localStorage to get data
+     * @return {string}
+     */
+    const getData = () => {
+      return localStorage.getItem("xdNumber");
+    };
+
     const copyToClipboard = el => {
       el.select();
       document.execCommand("copy");
@@ -216,9 +226,27 @@ const app = (() => {
       copyToClipboard(tracklistOutput);
     };
 
+    const onSubmitNumberForm = e => {
+      const value = numberInput.value;
+      e.preventDefault();
+      saveData(value);
+      console.log(value);
+    };
+
+    const setNumberFromStorage = () => {
+      const number = getData();
+      if (number) {
+        xdNumber = number;
+        console.log(xdNumber);
+        numberInput.value = number;
+      }
+    };
+
+    setNumberFromStorage();
     // events
     tracklistSubmit.addEventListener("click", submitTracklist, false);
     tracklistOutput.addEventListener("input", onChangeOutput, false);
+    numberForm.addEventListener("submit", onSubmitNumberForm, false);
   };
 
   const init = () => {
