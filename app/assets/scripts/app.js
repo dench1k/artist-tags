@@ -2,14 +2,15 @@
 
 const app = (() => {
   // data
+  let xdNumber = "005";
   const DEFAULT_TAGS = [
     "liquidxd",
-    "liquidxd004",
+    `liquidxd${xdNumber}`,
     "liquid",
     "liquiddnb",
     "dnb",
     "xd",
-    "xd004",
+    `xd${xdNumber}`,
     "drumandbass",
     "drum&bass",
     "liquiddrumandbass",
@@ -106,9 +107,11 @@ const app = (() => {
 
   /**
    * Use localStorage to save data
-   * @param {*} obj
+   * @param {*} number
    */
-  const saveData = obj => {};
+  const saveData = number => {
+    localStorage.setItem("xdNumber", number);
+  };
 
   /**
    * Process input data and return a formatted string as output
