@@ -2,7 +2,7 @@
 
 const app = (() => {
   // data
-  const DYNAMIC_TAGS = [];
+  let dynamicTags = [];
   const DEFAULT_TAGS = [
     "liquidxd",
     "liquid",
@@ -132,11 +132,10 @@ const app = (() => {
     const splittedBySubAddInfo = getFlatArray(
       splitBySpaceArray(flattedByParenthesisArray)
     );
-    console.log(DEFAULT_TAGS);
 
     const processedArray = getUniqueArray([
       ...DEFAULT_TAGS,
-      ...DYNAMIC_TAGS,
+      ...dynamicTags,
       ...combinedByArtistArray,
       ...splittedBySubAddInfo
     ]);
@@ -146,9 +145,8 @@ const app = (() => {
       BAN_WORDLIST
     );
 
+    // Final output data
     const outputData = filteredProcessedArray.join(", ");
-
-    console.log(outputData);
 
     return outputData;
   };
@@ -182,6 +180,10 @@ const app = (() => {
      */
     const getData = () => {
       return localStorage.getItem("xdNumber");
+    };
+
+    const addDynamicTags = number => {
+      dynamicTags = [`liquidxd${number}`, `xd${number}`];
     };
 
     const copyToClipboard = el => {
@@ -230,14 +232,14 @@ const app = (() => {
       const value = numberInput.value;
       e.preventDefault();
       saveData(value);
+      addDynamicTags(value);
     };
 
     const setNumberFromStorage = () => {
       const number = getData();
       if (number) {
         numberInput.value = number;
-        DYNAMIC_TAGS.push(`liquidxd${number}`);
-        DYNAMIC_TAGS.push(`xd${number}`);
+        addDynamicTags(number);
       }
     };
 
