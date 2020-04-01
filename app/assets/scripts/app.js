@@ -2,15 +2,13 @@
 
 const app = (() => {
   // data
-  let xdNumber = "005";
+  const DYNAMIC_TAGS = [];
   const DEFAULT_TAGS = [
     "liquidxd",
-    `liquidxd${xdNumber}`,
     "liquid",
     "liquiddnb",
     "dnb",
     "xd",
-    `xd${xdNumber}`,
     "drumandbass",
     "drum&bass",
     "liquiddrumandbass",
@@ -135,8 +133,10 @@ const app = (() => {
       splitBySpaceArray(flattedByParenthesisArray)
     );
     console.log(DEFAULT_TAGS);
+
     const processedArray = getUniqueArray([
       ...DEFAULT_TAGS,
+      ...DYNAMIC_TAGS,
       ...combinedByArtistArray,
       ...splittedBySubAddInfo
     ]);
@@ -230,15 +230,14 @@ const app = (() => {
       const value = numberInput.value;
       e.preventDefault();
       saveData(value);
-      console.log(value);
     };
 
     const setNumberFromStorage = () => {
       const number = getData();
       if (number) {
-        xdNumber = number;
-        console.log(xdNumber);
         numberInput.value = number;
+        DYNAMIC_TAGS.push(`liquidxd${number}`);
+        DYNAMIC_TAGS.push(`xd${number}`);
       }
     };
 
