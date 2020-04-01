@@ -247,6 +247,7 @@ const app = (() => {
     tracklistSubmit.addEventListener("click", submitTracklist, false);
     tracklistOutput.addEventListener("input", onChangeOutput, false);
     numberForm.addEventListener("submit", onSubmitNumberForm, false);
+    numberInput.addEventListener("blur", onSubmitNumberForm, false);
   };
 
   const init = () => {
