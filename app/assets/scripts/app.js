@@ -14,10 +14,10 @@ const app = (() => {
     "liquiddrumandbass",
     "liquiddrum&bass",
     "vocaldrumandbass",
-    "vocaldrumandbass2020",
+    "vocaldrumandbass2022",
     "music",
     "dench1k",
-    "denchke"
+    "denchke",
   ];
   const BAN_WORDLIST = [
     "mix",
@@ -30,76 +30,73 @@ const app = (() => {
     "feat.",
     "ft",
     "ft.",
-    "bootleg"
+    "bootleg",
   ];
   const MAX_TAGS_NUM = 50;
 
   //functions
-  const removeNumbersArray = arr => {
-    return arr.map(item => {
+  const removeNumbersArray = (arr) => {
+    return arr.map((item) => {
       return item.split(/\d\d-/);
     });
   };
 
-  const removeDashesArray = arr => {
-    return arr.map(item => {
+  const removeDashesArray = (arr) => {
+    return arr.map((item) => {
       return item.split(" - ");
     });
   };
 
-  const removeAmpersandArray = arr => {
-    return arr.map(item => {
+  const removeAmpersandArray = (arr) => {
+    return arr.map((item) => {
       return item.split(" & ");
     });
   };
 
-  const splitBySpaceArray = arr => {
-    return arr.map(item => {
+  const splitBySpaceArray = (arr) => {
+    return arr.map((item) => {
       return item.toLowerCase().split(" ");
     });
   };
 
-  const removeSpacesArray = arr => {
-    return arr.map(item => {
-      return item
-        .split(" ")
-        .join("")
-        .toLowerCase();
+  const removeSpacesArray = (arr) => {
+    return arr.map((item) => {
+      return item.split(" ").join("").toLowerCase();
     });
   };
 
-  const getParenthesisArray = arr => {
-    return arr.map(item => {
+  const getParenthesisArray = (arr) => {
+    return arr.map((item) => {
       const regExp = /\(([^)]+)\)/g;
       return item.split(regExp);
     });
   };
 
-  const filterParenthesisArray = arr => {
-    return arr.filter(item => {
+  const filterParenthesisArray = (arr) => {
+    return arr.filter((item) => {
       return item[1];
     });
   };
 
   const filterByWordlist = (arr, wordlist) => {
-    return arr.filter(item => {
+    return arr.filter((item) => {
       return !wordlist.includes(item);
     });
   };
 
-  const getFlatArray = arr => {
-    return arr.flatMap(item => {
+  const getFlatArray = (arr) => {
+    return arr.flatMap((item) => {
       return item;
     });
   };
 
   const getFlatArrayByIndex = (arr, index = 0) => {
-    return arr.flatMap(item => {
+    return arr.flatMap((item) => {
       return item[index];
     });
   };
 
-  const getUniqueArray = arr => {
+  const getUniqueArray = (arr) => {
     return [...new Set(arr)];
   };
 
@@ -108,7 +105,7 @@ const app = (() => {
    * @param {string} inputData - A string with input data
    * @return {string}
    */
-  const processData = inputData => {
+  const processData = (inputData) => {
     const tracklistInputArray = inputData.trim().split("\n");
     const splittedByNumbersArray = removeNumbersArray(tracklistInputArray);
     const flattedBySpacesArray = getFlatArrayByIndex(splittedByNumbersArray, 1);
@@ -119,9 +116,8 @@ const app = (() => {
     const combinedByArtistArray = removeSpacesArray(flattedByAmpersandArray);
 
     const flattedBySongArray = getFlatArrayByIndex(splittedByDashesArray, 1);
-    const splittedByAdditionalInfoArray = getParenthesisArray(
-      flattedBySongArray
-    );
+    const splittedByAdditionalInfoArray =
+      getParenthesisArray(flattedBySongArray);
     const filteredByParenthesisArray = filterParenthesisArray(
       splittedByAdditionalInfoArray
     );
@@ -137,7 +133,7 @@ const app = (() => {
       ...DEFAULT_TAGS,
       ...dynamicTags,
       ...combinedByArtistArray,
-      ...splittedBySubAddInfo
+      ...splittedBySubAddInfo,
     ]);
 
     const filteredProcessedArray = filterByWordlist(
@@ -169,7 +165,7 @@ const app = (() => {
      * Use localStorage to save data
      * @param {*} number
      */
-    const saveData = number => {
+    const saveData = (number) => {
       localStorage.setItem("xdNumber", number);
       console.log(`xdNumber ${number} is saved`);
     };
@@ -182,16 +178,16 @@ const app = (() => {
       return localStorage.getItem("xdNumber");
     };
 
-    const addDynamicTags = number => {
+    const addDynamicTags = (number) => {
       dynamicTags = [`liquidxd${number}`, `xd${number}`];
     };
 
-    const copyToClipboard = el => {
+    const copyToClipboard = (el) => {
       el.select();
       document.execCommand("copy");
     };
 
-    const getTagsLength = str => {
+    const getTagsLength = (str) => {
       return str.split(",").length;
     };
 
@@ -228,7 +224,7 @@ const app = (() => {
       copyToClipboard(tracklistOutput);
     };
 
-    const onSubmitNumberForm = e => {
+    const onSubmitNumberForm = (e) => {
       const value = numberInput.value;
       e.preventDefault();
       saveData(value);
@@ -256,7 +252,7 @@ const app = (() => {
   };
 
   return {
-    init
+    init,
   };
 })();
 
