@@ -31,7 +31,10 @@ const app = (() => {
     "ft",
     "ft.",
     "bootleg",
+    "VIP",
     " x ",
+    "vs",
+    "vs.",
   ];
   const MAX_TAGS_NUM = 50;
 
@@ -56,13 +59,7 @@ const app = (() => {
 
   const splitBySpaceArray = (arr) => {
     return arr.map((item) => {
-      return item.toLowerCase().split(" ");
-    });
-  };
-
-  const removeSpacesArray = (arr) => {
-    return arr.map((item) => {
-      return item.split(" ").join("").toLowerCase();
+      return item.split(" ");
     });
   };
 
@@ -78,6 +75,8 @@ const app = (() => {
       return item[1];
     });
   };
+
+  const lowerArray = (arr) => arr.map((element) => element.toLowerCase());
 
   const filterByWordlist = (arr, wordlist) => {
     return arr.filter((item) => {
@@ -114,8 +113,6 @@ const app = (() => {
     const flattedByArtistArray = getFlatArrayByIndex(splittedByDashesArray);
     const splittedByAmpersandArray = removeAmpersandArray(flattedByArtistArray);
     const flattedByAmpersandArray = getFlatArray(splittedByAmpersandArray);
-    const combinedByArtistArray = removeSpacesArray(flattedByAmpersandArray);
-
     const flattedBySongArray = getFlatArrayByIndex(splittedByDashesArray, 1);
     const splittedByAdditionalInfoArray =
       getParenthesisArray(flattedBySongArray);
@@ -133,7 +130,7 @@ const app = (() => {
     const processedArray = getUniqueArray([
       ...DEFAULT_TAGS,
       ...dynamicTags,
-      ...combinedByArtistArray,
+      ...flattedByAmpersandArray,
       ...splittedBySubAddInfo,
     ]);
 
