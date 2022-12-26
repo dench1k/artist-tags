@@ -14,7 +14,7 @@ const app = (() => {
     "liquiddrumandbass",
     "liquiddrum&bass",
     "vocaldrumandbass",
-    "vocaldrumandbass2022",
+    "vocaldrumandbass2023",
     "music",
     "dench1k",
     "denchke",
@@ -31,6 +31,7 @@ const app = (() => {
     "ft",
     "ft.",
     "bootleg",
+    " x ",
   ];
   const MAX_TAGS_NUM = 50;
 
