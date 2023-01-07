@@ -23,6 +23,7 @@ const app = (() => {
     "mix",
     "original",
     "remix",
+    "Remix",
     "edit",
     "&",
     "vip",
