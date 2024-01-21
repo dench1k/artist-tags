@@ -14,7 +14,7 @@ const app = (() => {
     "liquiddrumandbass",
     "liquiddrum&bass",
     "vocaldrumandbass",
-    "vocaldrumandbass2023",
+    "vocaldrumandbass2024",
     "music",
     "dench1k",
     "denchke",
